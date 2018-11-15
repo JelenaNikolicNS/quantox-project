@@ -5,7 +5,7 @@
     <a href="views/register.php">Register</a>
     <a href="views/login.php">Login</a>
 
-    <h1>Hiiiiii</h1>
+    <h1>Quantox project</h1>
 
     <div>
         <form action="/quantoxproject/index.php" method="post">
