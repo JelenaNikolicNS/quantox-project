@@ -15,11 +15,14 @@ class Search {
             ':searchTerm' => $_POST['searchTerm']
         );
 
-        $stmt = $this->db->prepare("SELECT * FROM users WHERE email LIKE '%:searchTerm%' OR password LIKE '%:searchTerm%' OR name LIKE '%:searchTerm%'");
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE email LIKE concat('%', :searchTerm, '%') OR password LIKE concat('%', :searchTerm, '%') OR name LIKE concat('%', :searchTerm, '%')");
         $stmt->execute($data);
+        $stmt->errorInfo();
 
-        while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
-            echo $result['name'];
+        //var_dump($stmt->fetch());
+
+        while($result = $stmt->fetch()){
+            echo $result['name'] . ' -> ' . $result['email'] . ' -> ' . $result['password'];
         }
     }
 }

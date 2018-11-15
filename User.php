@@ -13,6 +13,7 @@ class User {
     }
 
     public function insert($data) {
+
         extract($data);
 
         $data = array (
@@ -23,6 +24,7 @@ class User {
         $stmt = $this->db->prepare('INSERT INTO users (name, email, password) VALUES (:name, :email, :password)');
         $stmt->execute($data);
         var_dump($this->db->lastInsertId());
+        return true;
     }
 
     public function login($data) {
@@ -35,6 +37,7 @@ class User {
         $stmt = $this->db->prepare('SELECT * FROM users WHERE email = :email AND password = :password');
         $stmt->execute($data);
         var_dump( $user = $stmt->fetch());
+        return true;
     }
 
 }

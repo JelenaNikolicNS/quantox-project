@@ -12,6 +12,7 @@ class Database extends PDO {
     public function __construct() {
         $this->connection = new \PDO("mysql:host={$this->host}; dbname={$this->db}", $this->user, $this->pass);
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     }
 
     public static function getInstance() {
